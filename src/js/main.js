@@ -1,15 +1,15 @@
 (function () {
     'use strict';
-    var ex1 = new Captionify({
+    captionify({
         imgClassSelector: "caption"
     });
 
-    var ex2 = new Captionify({
+    captionify({
         imgClassSelector: "data-caption",
         dataCaption: true
     });
 
-    var ex3 = new Captionify({
+    captionify({
         imgClassSelector: "bottom-caption",
         mode: "bottom"
     });
