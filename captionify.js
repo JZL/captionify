@@ -25,102 +25,103 @@
 
         // Set user options
         this.options = _extend(defaults, options);
-
-        this._init();
+        var that = this;
+        window.addEventListener("load", function(e) {
+            _init(that.options);
+            window.removeEventListener("load");
+        });
     }
 
-    Captionify.prototype = {
-        _init: function() {
-            var options = this.options,
-                captionClass = options.figcaptionClass,
-                captionText = "",
-                containerEl,
-                containerStr = options.containerSelector,
-                dataCaption = options.dataCaption,
-                dataLink = "",
-                figureClass = options.figureClass,
-                images,
-                imgClassSelector = options.imgClassSelector,
-                inheritStyles = options.inheritStyles,
-                link = "",
-                mode = options.mode,
-                setFigureWidth = options.setFigureWidth;
+    function _init(options) {
+        var options = options,
+            captionClass = options.figcaptionClass,
+            captionText = "",
+            containerEl,
+            containerStr = options.containerSelector,
+            dataCaption = options.dataCaption,
+            dataLink = "",
+            figureClass = options.figureClass,
+            images,
+            imgClassSelector = options.imgClassSelector,
+            inheritStyles = options.inheritStyles,
+            link = "",
+            mode = options.mode,
+            setFigureWidth = options.setFigureWidth;
 
-            // Get the container(s) with images
-            containerEl = _getContainer(containerStr);
+        // Get the container(s) with images
+        containerEl = _getContainer(containerStr);
 
-            if (containerEl.length > 0) {
-                // Extract images out of container(s)
-                images  = _getImages(containerEl, imgClassSelector);
+        if (containerEl.length > 0) {
+            // Extract images out of container(s)
+            images  = _getImages(containerEl, imgClassSelector);
 
-                if (images.length > 0) {
-                    images.forEach(function(element, index, array) {
-                        // Reset
-                        link = "";
+            if (images.length > 0) {
+                images.forEach(function(element, index, array) {
+                    // Reset
+                    link = "";
 
-                        // Get the caption text
-                        captionText = dataCaption ? _getAttribute(element, "data-caption") : element.alt;
+                    // Get the caption text
+                    captionText = dataCaption ? _getAttribute(element, "data-caption") : element.alt;
 
-                        // Get the link url
-                        dataLink = _getAttribute(element, "data-link");
+                    // Get the link url
+                    dataLink = _getAttribute(element, "data-link");
 
-                        if (captionText && captionText.length > 0) {
-                            var captionContainer = document.createElement("figcaption"),
-                                figure = document.createElement("figure");
+                    if (captionText && captionText.length > 0) {
+                        var captionContainer = document.createElement("figcaption"),
+                            figure = document.createElement("figure");
 
-                            // Create a link for those images that have it
-                            if (dataLink && dataLink.length > 0) {
-                                link = document.createElement("a");
-                                link.href = dataLink;
-                                link.textContent = captionText;
-                            }
-
-                            // Set figure and figcaption class names
-                            figure.className = figureClass;
-
-                            // Append additional modifier class if 'bottom' caption mode is selected
-                            if (mode && mode === "bottom") {
-                                var captionClassBottom = captionClass + " " + captionClass + "--" + "bottom";
-                                captionContainer.className = captionClassBottom;
-                            } else {
-                                captionContainer.className = captionClass;
-                            }
-
-                            // Set width of a <figure> if image has an explicit width attribtue
-                            if (setFigureWidth) {
-                                figure = _setFigureWidth(element, figure);
-                                element.removeAttribute("width");
-                            }
-
-                            // <figure> inherits direct image styles if option is true
-                            if (inheritStyles) {
-                                var styles = _getAttribute(element, "style");
-
-                                if (styles) {
-                                    element.removeAttribute("style");
-                                    figure.setAttribute("style", styles);
-                                }
-                            }
-
-                            // Wrap image with a figure tag
-                            _wrap(figure, element);
-
-                            if (link) {
-                                // Set the figcaption HTML
-                                captionContainer.appendChild(link);
-                            } else {
-                                // Set the figcaption text
-                                captionContainer.textContent = captionText;
-                            }
-
-                            // Insert figcaption after the image
-                            _insertAfter(captionContainer, element);
+                        // Create a link for those images that have it
+                        if (dataLink && dataLink.length > 0) {
+                            link = document.createElement("a");
+                            link.href = dataLink;
+                            link.textContent = captionText;
                         }
-                    });
-                }
+
+                        // Set figure and figcaption class names
+                        figure.className = figureClass;
+
+                        // Append additional modifier class if 'bottom' caption mode is selected
+                        if (mode && mode === "bottom") {
+                            var captionClassBottom = captionClass + " " + captionClass + "--" + "bottom";
+                            captionContainer.className = captionClassBottom;
+                        } else {
+                            captionContainer.className = captionClass;
+                        }
+
+                        // Set width of a <figure> if image has an explicit width attribtue
+                        if (setFigureWidth) {
+                            figure = _setFigureWidth(element, figure);
+                            element.removeAttribute("width");
+                        }
+
+                        // <figure> inherits direct image styles if option is true
+                        if (inheritStyles) {
+                            var styles = _getAttribute(element, "style");
+
+                            if (styles) {
+                                element.removeAttribute("style");
+                                figure.setAttribute("style", styles);
+                            }
+                        }
+
+                        // Wrap image with a figure tag
+                        _wrap(figure, element);
+
+                        if (link) {
+                            // Set the figcaption HTML
+                            captionContainer.appendChild(link);
+                        } else {
+                            // Set the figcaption text
+                            captionContainer.textContent = captionText;
+                        }
+
+                        // Insert figcaption after the image
+                        _insertAfter(captionContainer, element);
+                    }
+                });
             }
         }
-    };
+    }
 
     function _extend(dst, src) {
         if (src) {
@@ -133,15 +134,11 @@
     }
 
     function _getAttribute(element, attribute) {
-
         return element.getAttribute(attribute) || false;
-
     }
 
     function _getContainer(containerStr) {
-
         return document.querySelectorAll(containerStr);
-
     }
 
     function _getImages(containerEl, imgClass) {
