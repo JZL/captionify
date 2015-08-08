@@ -1,6 +1,6 @@
 {
   "name": "captionify",
-  "version": "0.1.0",
+  "version": "0.3.0",
   "description": "Captionify is non-jquery semantic image caption generator",
   "devDependencies": {
     "grunt-contrib-cssmin": "~0.12.3",

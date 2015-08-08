@@ -14,12 +14,10 @@ Captionify is a non-jQuery semantic image caption generator library.
     ```
 
 3. Initiate Captionify like so:
-    
+
     ```js
     <script>
-        document.addEventListener("DOMContentLoaded", function(event) {
-            var imageCaptions = new Captionify();
-        });
+        captionify();
     </script>
     ```
 
@@ -31,7 +29,7 @@ This will launch Captionify with the default settings. Captionify will caption a
 The example below modifies some of the default options:
 
 ```js
-var imageCaptions = new Captionify({
+captionify({
     containerSelector: ".pageContent",
     figureClass: "image",
     figcaptionClass: "imageCaption",
@@ -44,7 +42,7 @@ The above example will caption all images with a class of `caption` contained in
 ---------------------------------------
 
 ```js
-var imageCaptions = new Captionify({
+captionify({
     containerSelector: "article",
     dataCaption: "true"
 });
@@ -55,7 +53,7 @@ In this example all images in `<article>` are selected. Captionify will used the
 ---------------------------------------
 
 ```js
-var imageCaptions = new Captionify({
+captionify({
     containerSelector: "article",
     dataCaption: "true",
     mode: "bottom"
@@ -76,7 +74,7 @@ To create a hyperlinked caption specify a `data-link` attribute on an image like
 ## Options
 
 ```js
-var imageCaptions = new Captionify({
+captionify({
     containerSelector: "body", // pass in a tag (like article), a class ( like .content) or id (like #images)
     dataCaption: false, // set to true if you would like to use a 'data-caption' attribute for captions instead of the default 'alt' attribute
     figureClass: "imgFigure", // default class for the <figure> tag
@@ -96,7 +94,7 @@ Captionify does not inject any styling (actually, it does in some cases. If your
 Captionify also works well in conjunction with the [captionss](http://www.captionss.com) package for hassle-free caption styling. If you choose to use captionss, replace the Captionify CSS file with the captionss CSS file. Once that is done you can pass in an appropriate class name for a `<figure>` tag (as specified by captionss documentation) like so:
 
 ```js
-var imageCaptions = new Captionify({
+captionify({
     containerSelector: ".myContainer",
     figureClass: "embed hide-smooth dark"
 });

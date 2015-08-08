@@ -30,16 +30,19 @@
         <img data-caption="Din(n)er in the night" data-link="https://www.flickr.com/photos/sunny987/17223800040" src="https://c2.staticflickr.com/8/7715/17223800040_03afaff6a6.jpg" alt="Diner in the night">
         <p class="s">With data-link (caption shows)</p>
 
-        <img data-caption="Din(n)er in the night" src="https://c2.staticflickr.com/8/7715/17223800040_03afaff6a6.jpg" alt="Diner in the night">
+        <img data-caption="Cherry blossom neighbourhood" src="https://farm9.staticflickr.com/8859/16791073063_b87511c1b6_b.jpg" alt="Cherry blossom neighbourhood">
         <p class="s">No data-link (caption shows)</p>
 
-        <img data-caption="Din(n)er in the night" src="https://c2.staticflickr.com/8/7715/17223800040_03afaff6a6.jpg">
+        <img alt="Fisherman's boat" data-caption="Fisherman's boat - dataCaption" src="https://farm9.staticflickr.com/8737/17409587402_20b8d1986c_c.jpg">
+        <p class="s">No data-link (caption shows)</p>
+
+        <img data-caption="Fisherman's boat - dataCaption" src="https://c2.staticflickr.com/8/7715/17223800040_03afaff6a6.jpg">
         <p class="e">No alt, no data-link (no caption)</p>
     </section>
 
     <article id="ex2" class="ex2">
         <h2>Selecting images with a class within a tag with an id</h2>
-        <img class="caption" data-caption="Din(n)er in the night" data-link="https://www.flickr.com/photos/sunny987/17223800040" src="https://c2.staticflickr.com/8/7715/17223800040_03afaff6a6.jpg" alt="Diner in the night">
+        <img class="caption" data-caption="Cherry blossom neighbourhood - dataCaption" data-link="https://farm9.staticflickr.com/8859/16791073063_b87511c1b6_b.jpg" src="https://farm9.staticflickr.com/8859/16791073063_b87511c1b6_b.jpg" alt="Cherry blossom neighbourhood">
         <p class="s">Class with data-link (caption shows)</p>
 
         <img data-caption="Din(n)er in the night" data-link="https://www.flickr.com/photos/sunny987/17223800040" src="https://c2.staticflickr.com/8/7715/17223800040_03afaff6a6.jpg" alt="Diner in the night">
@@ -54,7 +57,7 @@
         <img data-caption="Din(n)er in the night" data-link="https://www.flickr.com/photos/sunny987/17223800040" src="https://c2.staticflickr.com/8/7715/17223800040_03afaff6a6.jpg" alt="Diner in the night">
         <p class="s">Data-caption with data-link (caption with link shows)</p>
 
-        <img data-caption="Din(n)er in the night" src="https://c2.staticflickr.com/8/7715/17223800040_03afaff6a6.jpg" alt="Diner in the night">
+        <img data-caption="Cherry blossom neighbourhood" src="https://farm9.staticflickr.com/8859/16791073063_b87511c1b6_b.jpg" alt="Cherry blossom neighbourhood - dataCaption">
         <p class="s">Data-caption, no data-link (caption shows)</p>
 
         <img data-link="https://www.flickr.com/photos/sunny987/17223800040" src="https://c2.staticflickr.com/8/7715/17223800040_03afaff6a6.jpg" alt="Diner in the night">
@@ -93,7 +96,7 @@
         <p class="s">Data-caption, no data-link (caption shows)</p>
 
         <img data-link="https://www.flickr.com/photos/sunny987/17223800040" src="https://c2.staticflickr.com/8/7715/17223800040_03afaff6a6.jpg" width="400px">
-        <p class="e">No alt with data-link (no caption)</p>
+        <p class="e">No data-caption with data-link (no caption)</p>
     </article>
 
     <article id="ex6" class="ex6">
@@ -112,34 +115,36 @@
 
     <script type="text/javascript" src="captionify.js"></script>
     <script type="text/javascript">
-        var ex1 = new Captionify({
+        captionify({
             containerSelector: "section"
         });
 
-        var ex2 = new Captionify({
+        captionify({
             containerSelector: "#ex2",
             imgClassSelector: "caption"
         });
 
-        var ex3 = new Captionify({
+        captionify({
             containerSelector: ".ex3",
             dataCaption: true
         });
 
-        var ex4 = new Captionify({
+        captionify({
             containerSelector: ".ex4"
         });
 
-        var ex5 = new Captionify({
-            containerSelector: ".ex5"
+        captionify({
+            containerSelector: ".ex5",
+            dataCaption: true
         });
 
-        var ex6 = new Captionify({
+        captionify({
             containerSelector: ".ex6",
-            mode: "bottom"
+            mode: "bottom",
+            dataCaption: true
         });
 
-        var ex7 = new Captionify({
+        captionify({
             containerSelector: ".noImg"
         });
     </script>

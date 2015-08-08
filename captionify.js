@@ -10,7 +10,7 @@
 (function (window) {
     "use strict";
 
-    function Captionify(options) {
+    function captionify(opts) {
         // Default options
         var defaults = {
             containerSelector: "body",
@@ -24,16 +24,20 @@
         };
 
         // Set user options
-        this.options = _extend(defaults, options);
-        var that = this;
-        window.addEventListener("load", function(e) {
-            _init(that.options);
-            window.removeEventListener("load");
-        });
+        var options = _extend(defaults, opts);
+
+        if (document.readyState === "complete") {
+            _init(options);
+        } else {
+            window.addEventListener("load", function(e) {
+                _init(options);
+                window.removeEventListener("load");
+            });
+        }
     }
 
-    function _init(options) {
-        var options = options,
+    function _init(opts) {
+        var options = opts,
             captionClass = options.figcaptionClass,
             captionText = "",
             containerEl,
@@ -199,6 +203,6 @@
         }
     }
 
-    window.Captionify = Captionify;
+    window.captionify = captionify;
 })(window);
 

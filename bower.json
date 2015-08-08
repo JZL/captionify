@@ -1,7 +1,7 @@
 {
   "name": "captionify",
   "main": "captionify.js",
-  "version": "0.1.0",
+  "version": "0.3.0",
   "authors": [
     "Bolatov Umar <bolatovumar@gmail.com>"
   ],
