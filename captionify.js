@@ -31,7 +31,9 @@
         } else {
             window.addEventListener("load", function(e) {
                 _init(options);
-                window.removeEventListener("load");
+                window.removeEventListener("load", function(){
+                        console.log("removed load!")
+                });
             });
         }
     }
